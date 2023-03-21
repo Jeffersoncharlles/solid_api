@@ -1,6 +1,6 @@
-import { prima } from '@/lib/prisma'
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
+import { registerService } from '../services/register'
 
 export const register = async (req: FastifyRequest, res: FastifyReply) => {
   const requesterBodySchema = z.object({
@@ -11,13 +11,11 @@ export const register = async (req: FastifyRequest, res: FastifyReply) => {
 
   const { email, name, password } = requesterBodySchema.parse(req.body)
 
-  await prima.user.create({
-    data: {
-      name,
-      email,
-      password_hash: password,
-    },
-  })
+  try {
+    await registerService({ email, name, password })
+  } catch (err) {
+    return res.status(409).send()
+  }
 
   return res.status(201).send()
 }
