@@ -1,4 +1,5 @@
 import { prima } from '@/lib/prisma'
+import { PrismaUsersRepository } from '@/repositories/prisma.users.repository'
 import { hash } from 'bcryptjs'
 
 interface RegisterService {
@@ -24,11 +25,7 @@ export const registerService = async ({
     throw new Error('E-mail already exists')
   }
 
-  await prima.user.create({
-    data: {
-      name,
-      email,
-      password_hash,
-    },
-  })
+  const prismaUserRepository = new PrismaUsersRepository()
+
+  await prismaUserRepository.create({ email, name, password_hash })
 }
