@@ -22,7 +22,7 @@ export const register = async (req: FastifyRequest, res: FastifyReply) => {
     if (err instanceof UserAlreadyExistsError) {
       return res.status(409).send({ message: err.message })
     }
-    return res.status(500).send()
+    throw err // deixar camada de cima tratar
   }
 
   return res.status(201).send()
