@@ -27,7 +27,7 @@ yarn dev
 ## RFs (Requisitos funcionais)
 
 - [x] Deve ser possível se cadastrar
-- [ ] Deve ser possível se autenticar
+- [x] Deve ser possível se autenticar
 - [ ] Deve ser possível obter o perfil de um usuário logado
 - [ ] Deve ser possível obter o numero de check-ins realizados pelo usuário logado
 - [ ] Deve ser possível obter o usuário obter seu histórico de check-ins
@@ -49,7 +49,7 @@ yarn dev
 ## RNFs (Requisitos não-funcionais)
 
 - [x] A senha do usuário precisa estar criptografadas
-- [ ] Os dados da aplicação precisam estar persistidos em um banco PostgresSQL
+- [x] Os dados da aplicação precisam estar persistidos em um banco PostgresSQL
 - [ ] Todos listas de dados precisam estar paginas com 20 itens por pagina
 - [ ] O usuário deve ser identificado por um JWT (JSON Web Token)
 

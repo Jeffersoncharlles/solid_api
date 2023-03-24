@@ -1,7 +1,7 @@
+import { UserAlreadyExistsError } from '@/services/errors/users-already-exists-error'
+import { makeRegisterService } from '@/services/factories/make-register-service'
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { UserAlreadyExistsError } from '../services/errors/users-already-exists-error'
-import { makeRegisterService } from '../services/factories/make-register-service'
 
 export const register = async (req: FastifyRequest, res: FastifyReply) => {
   const requesterBodySchema = z.object({
