@@ -26,7 +26,7 @@ yarn dev
 
 ## RFs (Requisitos funcionais)
 
-- [ ] Deve ser possível se cadastrar
+- [x] Deve ser possível se cadastrar
 - [ ] Deve ser possível se autenticar
 - [ ] Deve ser possível obter o perfil de um usuário logado
 - [ ] Deve ser possível obter o numero de check-ins realizados pelo usuário logado
@@ -39,7 +39,7 @@ yarn dev
 
 ## RNs (Regras de negocio)
 
-- [ ] O usuário não deve poder se cadastrar com um email duplicado
+- [x] O usuário não deve poder se cadastrar com um email duplicado
 - [ ] O usuário não pode fazer 2 check-ins no mesmo dia
 - [ ] O usuário não pode fazer check-in se não estiver perto (100m) da academia
 - [ ] O check-in so pode ser validado ate 20 minutos apos criado
@@ -48,7 +48,7 @@ yarn dev
 
 ## RNFs (Requisitos não-funcionais)
 
-- [ ] A senha do usuário precisa estar criptografadas
+- [x] A senha do usuário precisa estar criptografadas
 - [ ] Os dados da aplicação precisam estar persistidos em um banco PostgresSQL
 - [ ] Todos listas de dados precisam estar paginas com 20 itens por pagina
 - [ ] O usuário deve ser identificado por um JWT (JSON Web Token)
