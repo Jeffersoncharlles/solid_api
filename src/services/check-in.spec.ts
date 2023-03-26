@@ -1,4 +1,6 @@
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
+import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
+import { Decimal } from '@prisma/client/runtime'
 import { expect, describe, it, beforeEach, vi, afterEach } from 'vitest'
 import { CheckInService } from './check-in'
 
@@ -8,11 +10,22 @@ import { CheckInService } from './check-in'
 
 let checkIn: InMemoryCheckInsRepository
 let sut: CheckInService
+let gyms: InMemoryGymsRepository
 
 describe('CheckIn Service', async () => {
   beforeEach(() => {
     checkIn = new InMemoryCheckInsRepository()
-    sut = new CheckInService(checkIn)
+    gyms = new InMemoryGymsRepository()
+    sut = new CheckInService(checkIn, gyms)
+
+    gyms.items.push({
+      id: 'gym-01',
+      title: 'JavaScript Gym',
+      description: '',
+      phone: '',
+      latitude: new Decimal(0),
+      longitude: new Decimal(0),
+    })
 
     vi.useFakeTimers()
   })
@@ -26,12 +39,12 @@ describe('CheckIn Service', async () => {
     const { checkIn } = await sut.execute({
       gymIn: 'gym-01',
       userId: 'user-01',
+      userLatitude: 0,
+      userLongitude: 0,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
   })
-  //= ==========================================================//
-
   //= ==========================================================//
   it('should not be able to check in twice in on same day', async () => {
     vi.setSystemTime(new Date(2022, 0, 19, 8, 0, 0))
@@ -39,30 +52,58 @@ describe('CheckIn Service', async () => {
     await sut.execute({
       gymIn: 'gym-01',
       userId: 'user-01',
+      userLatitude: 0,
+      userLongitude: 0,
     })
 
     await expect(() =>
       sut.execute({
         gymIn: 'gym-01',
         userId: 'user-01',
+        userLatitude: 0,
+        userLongitude: 0,
       }),
     ).rejects.toBeInstanceOf(Error)
   })
+  //= ==========================================================//
   it('should be to check in twice but in different days', async () => {
     vi.setSystemTime(new Date(2022, 0, 19, 8, 0, 0))
-
     await sut.execute({
       gymIn: 'gym-01',
       userId: 'user-01',
+      userLatitude: 0,
+      userLongitude: 0,
     })
-
     vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
 
     const { checkIn } = await sut.execute({
       gymIn: 'gym-01',
       userId: 'user-01',
+      userLatitude: 0,
+      userLongitude: 0,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
   })
+  //= ==========================================================//
+  it('should not  be able to check in on distant gym', async () => {
+    gyms.items.push({
+      id: 'gym-02',
+      title: 'JavaScript Gym2',
+      description: '',
+      phone: '',
+      latitude: new Decimal(-16.6983363),
+      longitude: new Decimal(-49.2487712),
+    })
+
+    await expect(() =>
+      sut.execute({
+        gymIn: 'gym-02',
+        userId: 'user-01',
+        userLatitude: -16.6878541,
+        userLongitude: -49.2740054,
+      }),
+    ).rejects.toBeInstanceOf(Error)
+  })
+  //= ==========================================================//
 })
