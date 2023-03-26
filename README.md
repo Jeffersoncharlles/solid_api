@@ -28,19 +28,19 @@ yarn dev
 
 - [x] Deve ser possível se cadastrar
 - [x] Deve ser possível se autenticar
-- [ ] Deve ser possível obter o perfil de um usuário logado
+- [x] Deve ser possível obter o perfil de um usuário logado
 - [ ] Deve ser possível obter o numero de check-ins realizados pelo usuário logado
 - [ ] Deve ser possível obter o usuário obter seu histórico de check-ins
 - [ ] Deve ser possível o usuário buscar academias próximas
 - [ ] Deve ser possível o usuário buscar academias pelo nome
-- [ ] Deve ser possível o usuário realizar  check-in em uma academia
+- [x] Deve ser possível o usuário realizar  check-in em uma academia
 - [ ] Deve ser possível validar check-in de um usuário
 - [ ] Deve ser possível cadastrar uma academia
 
 ## RNs (Regras de negocio)
 
 - [x] O usuário não deve poder se cadastrar com um email duplicado
-- [ ] O usuário não pode fazer 2 check-ins no mesmo dia
+- [x] O usuário não pode fazer 2 check-ins no mesmo dia
 - [ ] O usuário não pode fazer check-in se não estiver perto (100m) da academia
 - [ ] O check-in so pode ser validado ate 20 minutos apos criado
 - [ ] O check-in so pode ser validado por administradores
@@ -61,9 +61,10 @@ This Back-End project was developed using the following technologies:
 
 -   [Typescript][typescript]
 -   [Fastify][fastify]
--   [Knex.js][knex]
+-   [Prisma][prisma]
 -   [Zod][zod]
 -   [Dot env][dotenv]
+-   [BcryptJs][bcryptjs]
 -   [Vitest][vitest]
 -   [SuperTest][supertest]
 -   [TsUp][tsup]
@@ -84,6 +85,7 @@ Feel free to bring new features or fix problems, it will be a pleasure! 💜
 [tsup]: https://tsup.egoist.dev/
 [knex]: https://knexjs.org/
 [dotenv]: https://www.npmjs.com/package/dotenv
+[bcryptjs]: https://github.com/dcodeIO/bcrypt.js
 [tailwindcss]: https://tailwindcss.com/
 [clsx]: https://github.com/lukeed/clsx#readme
 [nativewind]: https://www.nativewind.dev/
