@@ -3,6 +3,8 @@ import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-
 import { Decimal } from '@prisma/client/runtime'
 import { expect, describe, it, beforeEach, vi, afterEach } from 'vitest'
 import { CheckInService } from './check-in'
+import { MaxDistanceError } from './errors/max-distance-error'
+import { MaxNumberOfCheckInError } from './errors/max-number0of-check-ins-error'
 
 // TDD => state red => error test
 // TDD => state green => code para passar
@@ -13,16 +15,16 @@ let sut: CheckInService
 let gyms: InMemoryGymsRepository
 
 describe('CheckIn Service', async () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     checkIn = new InMemoryCheckInsRepository()
     gyms = new InMemoryGymsRepository()
     sut = new CheckInService(checkIn, gyms)
 
-    gyms.items.push({
+    await gyms.create({
       id: 'gym-01',
       title: 'JavaScript Gym',
-      description: '',
-      phone: '',
+      description: null,
+      phone: null,
       latitude: new Decimal(0),
       longitude: new Decimal(0),
     })
@@ -63,7 +65,7 @@ describe('CheckIn Service', async () => {
         userLatitude: 0,
         userLongitude: 0,
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(MaxNumberOfCheckInError)
   })
   //= ==========================================================//
   it('should be to check in twice but in different days', async () => {
@@ -87,13 +89,13 @@ describe('CheckIn Service', async () => {
   })
   //= ==========================================================//
   it('should not  be able to check in on distant gym', async () => {
-    gyms.items.push({
+    await gyms.create({
       id: 'gym-02',
-      title: 'JavaScript Gym2',
-      description: '',
-      phone: '',
-      latitude: new Decimal(-16.6983363),
-      longitude: new Decimal(-49.2487712),
+      title: 'JavaScript Gym',
+      description: null,
+      phone: null,
+      latitude: new Decimal(0),
+      longitude: new Decimal(0),
     })
 
     await expect(() =>
@@ -103,7 +105,7 @@ describe('CheckIn Service', async () => {
         userLatitude: -16.6878541,
         userLongitude: -49.2740054,
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(MaxDistanceError)
   })
   //= ==========================================================//
 })
