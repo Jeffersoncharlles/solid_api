@@ -9,6 +9,10 @@ class PrismaGymsRepository implements GymsRepository {
   async findById(gymId: string): Promise<Gym | null> {
     throw new Error('Method not implemented.')
   }
+
+  async searchMany(query: string, page: number): Promise<Gym[]> {
+    throw new Error('Method not implemented.')
+  }
 }
 
 export { PrismaGymsRepository }

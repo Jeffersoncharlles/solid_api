@@ -29,10 +29,10 @@ yarn dev
 - [x] Deve ser possível se cadastrar
 - [x] Deve ser possível se autenticar
 - [x] Deve ser possível obter o perfil de um usuário logado
-- [ ] Deve ser possível obter o numero de check-ins realizados pelo usuário logado
+- [x] Deve ser possível obter o numero de check-ins realizados pelo usuário logado
 - [x] Deve ser possível obter o usuário obter seu histórico de check-ins
 - [ ] Deve ser possível o usuário buscar academias próximas
-- [ ] Deve ser possível o usuário buscar academias pelo nome
+- [x] Deve ser possível o usuário buscar academias pelo nome
 - [x] Deve ser possível o usuário realizar  check-in em uma academia
 - [ ] Deve ser possível validar check-in de um usuário
 - [x] Deve ser possível cadastrar uma academia
