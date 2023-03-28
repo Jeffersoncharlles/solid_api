@@ -13,6 +13,10 @@ class PrismaGymsRepository implements GymsRepository {
   async searchMany(query: string, page: number): Promise<Gym[]> {
     throw new Error('Method not implemented.')
   }
+
+  async findManyNearBy(latitude: number, longitude: number): Promise<Gym[]> {
+    throw new Error('Method not implemented.')
+  }
 }
 
 export { PrismaGymsRepository }
