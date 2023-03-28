@@ -16,6 +16,10 @@ class PrismaCheckInsRepository implements CheckInRepository {
   async findManyByUserId(userId: string): Promise<CheckIn[]> {
     throw new Error('Method not implemented.')
   }
+
+  async countByUserId(userId: string): Promise<number> {
+    throw new Error('Method not implemented.')
+  }
 }
 
 export { PrismaCheckInsRepository }
