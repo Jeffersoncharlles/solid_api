@@ -30,12 +30,12 @@ yarn dev
 - [x] Deve ser possível se autenticar
 - [x] Deve ser possível obter o perfil de um usuário logado
 - [ ] Deve ser possível obter o numero de check-ins realizados pelo usuário logado
-- [ ] Deve ser possível obter o usuário obter seu histórico de check-ins
+- [x] Deve ser possível obter o usuário obter seu histórico de check-ins
 - [ ] Deve ser possível o usuário buscar academias próximas
 - [ ] Deve ser possível o usuário buscar academias pelo nome
 - [x] Deve ser possível o usuário realizar  check-in em uma academia
 - [ ] Deve ser possível validar check-in de um usuário
-- [ ] Deve ser possível cadastrar uma academia
+- [x] Deve ser possível cadastrar uma academia
 
 ## RNs (Regras de negocio)
 
@@ -50,7 +50,7 @@ yarn dev
 
 - [x] A senha do usuário precisa estar criptografadas
 - [x] Os dados da aplicação precisam estar persistidos em um banco PostgresSQL
-- [ ] Todos listas de dados precisam estar paginas com 20 itens por pagina
+- [x] Todos listas de dados precisam estar paginas com 20 itens por pagina
 - [ ] O usuário deve ser identificado por um JWT (JSON Web Token)
 
 
