@@ -19,7 +19,7 @@ class FetchNearByGymsService {
   }: NearByGymReq): Promise<NearByGymRes> {
     const gyms = await this.gymsR.findManyNearBy({
       latitude: userLatitude,
-      longitude: userLatitude,
+      longitude: userLongitude,
     })
 
     return {

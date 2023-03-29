@@ -14,47 +14,27 @@ describe('Search Gym Service', async () => {
   //= ==========================================================//
   it('should be able to fetch nearby gyms', async () => {
     await gymsR.create({
-      title: 'JavaScript Gym',
+      title: 'Near Gym',
       description: null,
       phone: null,
-      latitude: -16.6983363,
-      longitude: -49.2487712,
+      latitude: -16.684955,
+      longitude: -49.2738512,
     })
 
     await gymsR.create({
-      title: 'gym-01',
+      title: 'Far Gym',
       description: null,
       phone: null,
-      latitude: -16.6983363,
-      longitude: -49.2487712,
+      latitude: -17.7638608,
+      longitude: -49.3056673,
     })
 
     const { gyms } = await sut.execute({
-      userLatitude: -16.6878541,
-      userLongitude: -49.2740054,
+      userLatitude: -16.684955,
+      userLongitude: -49.2738512,
     })
 
     expect(gyms).toHaveLength(1)
-  })
-
-  it.skip('should be able to fetch paginated gyms search', async () => {
-    // for (let i = 1; i <= 22; i++) {
-    //   await gymsR.create({
-    //     title: `gym-01 ${i}`,
-    //     description: null,
-    //     phone: null,
-    //     latitude: -16.6983363,
-    //     longitude: -49.2487712,
-    //   })
-    // }
-    // const { gyms } = await sut.execute({
-    //   query: 'gym-01',
-    //   page: 2,
-    // })
-    // expect(gyms).toHaveLength(2)
-    // expect(gyms).toEqual([
-    //   expect.objectContaining({ title: 'gym-01 21' }),
-    //   expect.objectContaining({ title: 'gym-01 22' }),
-    // ])
+    expect(gyms).toEqual([expect.objectContaining({ title: 'Near Gym' })])
   })
 })
