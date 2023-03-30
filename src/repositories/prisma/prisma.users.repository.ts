@@ -1,11 +1,11 @@
-import { prima } from '@/lib/prisma'
+import { prisma } from '@/lib/prisma'
 import { Prisma, User } from '@prisma/client'
 import { UsersRepository } from '../interfaces/users.repository'
 
 export class PrismaUsersRepository implements UsersRepository {
   //= =========================================================//
   async findByEmail(email: string): Promise<User | null> {
-    const user = await prima.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         email,
       },
@@ -16,7 +16,7 @@ export class PrismaUsersRepository implements UsersRepository {
 
   //= =========================================================//
   async create(data: Prisma.UserCreateInput) {
-    const user = await prima.user.create({
+    const user = await prisma.user.create({
       data,
     })
 
@@ -25,7 +25,7 @@ export class PrismaUsersRepository implements UsersRepository {
 
   //= =========================================================//
   async findById(id: string): Promise<User | null> {
-    const user = await prima.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         id,
       },
@@ -33,4 +33,5 @@ export class PrismaUsersRepository implements UsersRepository {
 
     return user
   }
+  //= ==============================================//
 }
