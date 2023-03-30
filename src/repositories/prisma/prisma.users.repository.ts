@@ -24,7 +24,13 @@ export class PrismaUsersRepository implements UsersRepository {
   }
 
   //= =========================================================//
-  findById(id: string): Promise<User | null> {
-    throw new Error('Method not implemented.')
+  async findById(id: string): Promise<User | null> {
+    const user = await prima.user.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return user
   }
 }
