@@ -1,7 +1,6 @@
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 import { expect, describe, it, beforeEach, vi, afterEach } from 'vitest'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
-
 import { ValidateCheckInService } from './validate-check-in'
 
 // TDD => state red => error test
@@ -44,5 +43,22 @@ describe('Validate Check-in Service', async () => {
         checkInId: 'inexistent-id',
       }),
     ).rejects.toBeInstanceOf(ResourceNotFoundError)
+  })
+  it('should not be able to validate the check-in after 20 minutes of its creation', async () => {
+    vi.setSystemTime(new Date(2023, 0, 1, 13, 40))
+
+    const createdCheckIn = await checkInR.create({
+      gym_id: 'gym-01',
+      user_id: 'user-01',
+    })
+
+    const timeAdvance = 1000 * 60 * 21 // 21 minutes
+    vi.advanceTimersByTime(timeAdvance)
+
+    await expect(() =>
+      sut.execute({
+        checkInId: createdCheckIn.id,
+      }),
+    ).rejects.toBeInstanceOf(Error)
   })
 })
