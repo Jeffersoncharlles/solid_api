@@ -1,5 +1,5 @@
-import { Prisma } from '@prisma/client'
-import { GymsRepository } from '../interfaces/gym.repository'
+import { Gym, Prisma } from '@prisma/client'
+import { GymsRepository, findManyParams } from '../interfaces/gym.repository'
 import { prisma } from '@/lib/prisma'
 
 class PrismaGymsRepository implements GymsRepository {
@@ -39,11 +39,11 @@ class PrismaGymsRepository implements GymsRepository {
   }
 
   //= ==============================================//
-  async findManyNearBy(latitude: number, longitude: number) {
-    const gymDistance = await prisma.gym
-
-    // SELECT * from gyms
-    // WHERE(6371 * acos(cos(radians(${ latitude })) * cos(radians(latitude)) * cos(radians(longitude) - radians(${ longitude })) + sin(radians(${ latitude })) * sin(radians(latitude)))) <= 10
+  async findManyNearBy({ latitude, longitude }: findManyParams) {
+    const gymDistance = await prisma.$queryRaw<Gym[]>`
+    SELECT * from gyms
+    WHERE(6371 * acos(cos(radians(${latitude})) * cos(radians(latitude)) * cos(radians(longitude) - radians(${longitude})) + sin(radians(${latitude})) * sin(radians(latitude)))) <= 10
+    ` // pegar o resultado e ver se a distancia em km e menor ou igual a 10 km
 
     return gymDistance
   }
