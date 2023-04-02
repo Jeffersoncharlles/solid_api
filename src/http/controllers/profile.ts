@@ -6,10 +6,7 @@ import { z } from "zod"
 const profileController = async (req: FastifyRequest, res: FastifyReply) => {
 
   try {
-    await req.jwtVerify()
-
     const getUserProfile = makeGetUserProfileService()
-
     const { user} = await getUserProfile.execute({userId:req.user.sub})
 
     return res.status(201).send({
@@ -18,7 +15,7 @@ const profileController = async (req: FastifyRequest, res: FastifyReply) => {
     }})
   } catch (err) {
     if (err instanceof Error) {
-      return res.status(409).send({ message: err.message })
+      return res.status(500).send({ message: err.message })
     }
     throw err // deixar camada de cima tratar
   }
