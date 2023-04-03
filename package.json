@@ -3,16 +3,6 @@
   "version": "1.0.0",
   "description": "GynPass",
   "main": "index.js",
-  "scripts": {
-    "test:run": "vitest run",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui",
-    "dev": "tsx watch src/server.ts",
-    "start": "node build/server.js",
-    "build": "tsup src --out-dir build",
-    "lint": "lint"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jeffersoncharlles/solid_api.git"
@@ -23,6 +13,16 @@
     "url": "https://github.com/Jeffersoncharlles/solid_api/issues"
   },
   "homepage": "https://github.com/Jeffersoncharlles/solid_api#readme",
+  "scripts": {
+    "test:run": "vitest run",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build",
+    "lint": "lint"
+  },
   "devDependencies": {
     "@rocketseat/eslint-config": "1.2.0",
     "@types/node": "18.14.6",
