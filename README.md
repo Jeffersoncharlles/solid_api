@@ -51,7 +51,7 @@ yarn dev
 - [x] A senha do usuário precisa estar criptografadas
 - [x] Os dados da aplicação precisam estar persistidos em um banco PostgresSQL
 - [x] Todos listas de dados precisam estar paginas com 20 itens por pagina
-- [ ] O usuário deve ser identificado por um JWT (JSON Web Token)
+- [x] O usuário deve ser identificado por um JWT (JSON Web Token)
 
 
 ## 🚀 Technologies:
