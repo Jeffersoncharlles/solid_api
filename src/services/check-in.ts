@@ -8,7 +8,7 @@ import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface CheckInReq {
   userId: string
-  gymIn: string
+  gymId: string
   userLatitude: number
   userLongitude: number
 }
@@ -24,12 +24,12 @@ class CheckInService {
   ) {}
 
   async execute({
-    gymIn,
+    gymId,
     userId,
     userLatitude,
     userLongitude,
   }: CheckInReq): Promise<CheckInResponse> {
-    const gym = await this.gyms.findById(gymIn)
+    const gym = await this.gyms.findById(gymId)
 
     if (!gym) throw new ResourceNotFoundError()
 
@@ -59,7 +59,7 @@ class CheckInService {
     }
 
     const checkIn = await this.checkIns.create({
-      gym_id: gymIn,
+      gym_id: gymId,
       user_id: userId,
     })
 

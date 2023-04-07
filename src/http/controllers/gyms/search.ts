@@ -3,12 +3,12 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
 
 const searchGymController = async (req: FastifyRequest, res: FastifyReply) => {
-  const reqBodySchema = z.object({
+  const reqSchema = z.object({
     page: z.coerce.number().min(1).default(1),
     query:z.string()
   })
 
-  const { page,query } = reqBodySchema.parse(req.body)
+  const { page, query } = reqSchema.parse(req.query)
 
   try {
     const search = makeSearchGymsService()

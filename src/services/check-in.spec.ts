@@ -39,7 +39,7 @@ describe('CheckIn Service', async () => {
   //= ==========================================================//
   it('should be able to check in', async () => {
     const { checkIn } = await sut.execute({
-      gymIn: 'gym-01',
+      gymId: 'gym-01',
       userId: 'user-01',
       userLatitude: 0,
       userLongitude: 0,
@@ -52,7 +52,7 @@ describe('CheckIn Service', async () => {
     vi.setSystemTime(new Date(2022, 0, 19, 8, 0, 0))
 
     await sut.execute({
-      gymIn: 'gym-01',
+      gymId: 'gym-01',
       userId: 'user-01',
       userLatitude: 0,
       userLongitude: 0,
@@ -60,7 +60,7 @@ describe('CheckIn Service', async () => {
 
     await expect(() =>
       sut.execute({
-        gymIn: 'gym-01',
+        gymId: 'gym-01',
         userId: 'user-01',
         userLatitude: 0,
         userLongitude: 0,
@@ -71,7 +71,7 @@ describe('CheckIn Service', async () => {
   it('should be to check in twice but in different days', async () => {
     vi.setSystemTime(new Date(2022, 0, 19, 8, 0, 0))
     await sut.execute({
-      gymIn: 'gym-01',
+      gymId: 'gym-01',
       userId: 'user-01',
       userLatitude: 0,
       userLongitude: 0,
@@ -79,7 +79,7 @@ describe('CheckIn Service', async () => {
     vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
 
     const { checkIn } = await sut.execute({
-      gymIn: 'gym-01',
+      gymId: 'gym-01',
       userId: 'user-01',
       userLatitude: 0,
       userLongitude: 0,
@@ -100,7 +100,7 @@ describe('CheckIn Service', async () => {
 
     await expect(() =>
       sut.execute({
-        gymIn: 'gym-02',
+        gymId: 'gym-02',
         userId: 'user-01',
         userLatitude: -16.6878541,
         userLongitude: -49.2740054,
