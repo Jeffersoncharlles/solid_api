@@ -3,20 +3,20 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
 
 const nearbyGymController = async (req: FastifyRequest, res: FastifyReply) => {
-  const reqBodySchema = z.object({
-    latitude: z.number().refine(value => {
-      return Math.abs(value) <= 90 //tem que ser menor ou igual a 90
+  const reqSchema = z.object({
+    latitude: z.coerce.number().refine((value) => {
+      return Math.abs(value) <= 90
     }),
-    longitude: z.number().refine(value => {
-      return Math.abs(value) <= 180 //tem que ser menor ou igual a 180 + ou -
-    })
+    longitude: z.coerce.number().refine((value) => {
+      return Math.abs(value) <= 180
+    }),
   })
 
-  const { latitude,longitude} = reqBodySchema.parse(req.body)
+  const { latitude,longitude} = reqSchema.parse(req.query)
 
   try {
     const nearby = makeFetchNearbyGymService()
-    const response = await nearby.execute({ userLatitude:latitude,userLongitude:longitude})
+    const response = await nearby.execute({ userLatitude: latitude, userLongitude: longitude })
 
     return res.status(200).send(response)
   } catch (err) {
