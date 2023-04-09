@@ -22,7 +22,25 @@ const authenticateController = async (req: FastifyRequest,res: FastifyReply,) =>
       },
     })
 
-    return res.status(200).send({token})
+    const refreshToken = await res.jwtSign({}, {
+      sign: {
+        sub: user.id,
+        expiresIn:'7d',// refresh token 7 days
+      }
+    })
+
+    return res
+      .status(200)
+      .setCookie('refreshToken', refreshToken, {
+        path: '/',
+        secure: true, //crypt in http
+        sameSite: true, // cookie in with site
+        httpOnly: true, // with cookie in back-end and not front-end
+
+      })
+      .send({
+      token
+    })
 
   } catch (err) {
     if (err instanceof InvalidCredentialsError) {
