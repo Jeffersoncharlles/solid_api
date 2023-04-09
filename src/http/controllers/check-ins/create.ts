@@ -16,7 +16,7 @@ const createCheckInsController = async (req: FastifyRequest, res: FastifyReply) 
   })
 
   const { latitude, longitude } = reqBodySchema.parse(req.body)
-  const { gymId} = reqParamsSchema.parse(req.params)
+  const { gymId } = reqParamsSchema.parse(req.params)
 
   try {
     const create = makeCheckInService()
