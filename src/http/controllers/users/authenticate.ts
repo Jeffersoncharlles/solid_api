@@ -36,10 +36,9 @@ const authenticateController = async (req: FastifyRequest,res: FastifyReply,) =>
         secure: true, //crypt in http
         sameSite: true, // cookie in with site
         httpOnly: true, // with cookie in back-end and not front-end
-
       })
       .send({
-      token
+       token
     })
 
   } catch (err) {
