@@ -6,13 +6,17 @@ const refreshController = async (req: FastifyRequest, res: FastifyReply) => {
   await req.jwtVerify({onlyCookie:true}) // with validate more no eye for headers in request
 
 
-  const token = await res.jwtSign({}, {
+  const token = await res.jwtSign({
+    role: req.user.role
+  }, {
       sign: {
         sub: req.user.sub,
       },
     })
 
-  const refreshToken = await res.jwtSign({}, {
+  const refreshToken = await res.jwtSign({
+    role: req.user.role
+  }, {
       sign: {
         sub: req.user.sub,
         expiresIn: '7d',// refresh token 7 days
