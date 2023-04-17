@@ -1,0 +1,220 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2023-04-12T12:48:48.621Z",
+  "__export_source": "insomnia.desktop.app:v2023.1.0",
+  "resources": [
+    {
+      "_id": "req_af2b46bbb166482190fef5a98e4013ee",
+      "parentId": "wrk_effa273530f04a90892c4d5c45926164",
+      "modified": 1681302772669,
+      "created": 1681302543429,
+      "url": "{{ _.baseUrl }}/gyms",
+      "name": "Create Gym",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t \"title\" : \"JavaScript Gym\",\n   \"description\": \"Some description?\",\n   \"phone\": \"9999999999\",\n   \"latitude\": -16.6983363,\n   \"longitude\": -49.2487712\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_ec316037b4be421f838257476b4552b4', 'b64::JC50b2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1681302543429,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "wrk_effa273530f04a90892c4d5c45926164",
+      "parentId": null,
+      "modified": 1681214002266,
+      "created": 1681214002266,
+      "name": "solid",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_ec316037b4be421f838257476b4552b4",
+      "parentId": "wrk_effa273530f04a90892c4d5c45926164",
+      "modified": 1681302795380,
+      "created": 1681214178076,
+      "url": "{{ _.baseUrl }}/sessions",
+      "name": "sessions",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\":\"contato@jefferdeveloper.com\",\n\t\"password\":\"123456\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1681214178076,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_65079009bc554742ba495c6ccd287b9d",
+      "parentId": "wrk_effa273530f04a90892c4d5c45926164",
+      "modified": 1681219591825,
+      "created": 1681214155837,
+      "url": "{{ _.baseUrl }}/token/refresh",
+      "name": "refresh token",
+      "description": "",
+      "method": "PATCH",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_ec316037b4be421f838257476b4552b4', 'b64::JC50b2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1681214155837,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_4a06de6aac894edf8f49b8b14f703586",
+      "parentId": "wrk_effa273530f04a90892c4d5c45926164",
+      "modified": 1681219553607,
+      "created": 1681214139594,
+      "url": "{{ _.baseUrl }}/me",
+      "name": "profile",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_ec316037b4be421f838257476b4552b4', 'b64::JC50b2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1681214139594,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_cf8b21be3244473cbedbad22e6ed9dde",
+      "parentId": "wrk_effa273530f04a90892c4d5c45926164",
+      "modified": 1681214129615,
+      "created": 1681214004837,
+      "url": "{{ _.baseUrl }}/users",
+      "name": "create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\":\"Jefferson Admin\",\n\t\"email\":\"contato_admin@jefferdeveloper.com\",\n\t\"password\":\"123456\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1681214004837,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_9f303811868542f6bfc66b1368ff2d448789c254",
+      "parentId": "wrk_effa273530f04a90892c4d5c45926164",
+      "modified": 1681214031634,
+      "created": 1681214002268,
+      "name": "Base Environment",
+      "data": {
+        "baseUrl": "http://localhost:3333"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "baseUrl"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1681214002268,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_9f303811868542f6bfc66b1368ff2d448789c254",
+      "parentId": "wrk_effa273530f04a90892c4d5c45926164",
+      "modified": 1681302798905,
+      "created": 1681214002269,
+      "name": "Default Jar",
+      "cookies": [
+        {
+          "key": "refreshToken",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiTUVNQkVSIiwic3ViIjoiNDlhNWQ3ZTktN2E2OS00ZDljLWIwOTYtMjRmYzZjNjRmZGYyIiwiaWF0IjoxNjgxMzAyNzk4LCJleHAiOjE2ODE5MDc1OTh9.4Swn0_7QSG95ZnztcgmTHhYKUhF29A5q3Hcym-Mvbds",
+          "domain": "localhost",
+          "path": "/",
+          "secure": true,
+          "httpOnly": true,
+          "extensions": [
+            "SameSite=Strict"
+          ],
+          "hostOnly": true,
+          "creation": "2023-04-11T11:58:38.875Z",
+          "lastAccessed": "2023-04-12T12:33:18.905Z",
+          "id": "5534842918924243"
+        }
+      ],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_749c1edb6ff54b50ba9c8aaa949a4145",
+      "parentId": "wrk_effa273530f04a90892c4d5c45926164",
+      "modified": 1681214002266,
+      "created": 1681214002266,
+      "fileName": "solid",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    }
+  ]
+}
